@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'tilt/erb'
 
-require_relative 'povestka_get'
-require_relative 'povestka_return'
+require_relative 'lib/povestka_get'
+require_relative 'lib/povestka_return'
 
 Thread.new do # trivial example work thread
   while true do

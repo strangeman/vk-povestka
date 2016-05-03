@@ -1,6 +1,6 @@
 require 'json'
 
-require_relative 'config'
+require_relative '../config'
 
 def get_from_file(datafile)
 	JSON.parse( IO.read(datafile, encoding:'utf-8') )

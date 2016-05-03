@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'json'
 
-require_relative 'config'
+require_relative '../config'
 
 def get_from_api(url)
   response = JSON.parse(RestClient.get(url))
