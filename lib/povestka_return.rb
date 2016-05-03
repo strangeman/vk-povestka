@@ -2,8 +2,9 @@ require 'json'
 
 require_relative '../config'
 
+
 def get_from_file(datafile)
-	JSON.parse( IO.read(datafile, encoding:'utf-8') )
+  JSON.parse( IO.read(datafile, encoding:'utf-8') )
 end
 
 def return_sorted(content, sort="date")

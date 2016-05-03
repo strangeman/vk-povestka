@@ -9,14 +9,26 @@ def get_from_api(url)
 end
 
 def get_public_posts(public_name, count=10)
-  url = "https://api.vk.com/method/wall.get?domain=#{public_name}&count=#{count}"
-  get_from_api(url)
+  if count<=0 or count>100
+    raise ArgumentError, "Records count should be more than 0 and no more than 100"
+  elsif public_name == ''
+    raise ArgumentError, "Public name shouldn't be empty"
+  else
+    url = "https://api.vk.com/method/wall.get?domain=#{public_name}&count=#{count}"
+    get_from_api(url)
+  end
 end
 
-def return_content(publics)
+def return_content(publics, count=nil)
+  if publics.empty? 
+    raise ArgumentError, "Define at least one public"
+  end
+  if count == nil
+    count = Config::POST_COUNT
+  end
   @json = []
   publics.each do |public|
-    @json += get_public_posts(public, Config::POST_COUNT)
+    @json += get_public_posts(public, count)
   end
   @json.to_json
 end
