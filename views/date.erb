@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.2/css/uikit.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.2/js/uikit.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-linkify/1.1.7/jquery.linkify.min.js"></script>
+
+</head>
+<body>
+<div class="uk-panel uk-width-8-10 uk-container-center">
+<h1>Новости Комсомольска</h1>
+<nav class="uk-navbar">
+	<div class="uk-navbar-brand">Сортировать по: </div>
+    <ul class="uk-navbar-nav">
+        <li><a href="/">Дате</a></li>
+        <li><a href="/likes">Лайкам</a></li>
+        <li><a href="/comments">Комментариям</a></li>
+    </ul>
+</nav>
+<hr class="uk-article-divider">
+<% for @post in @posts %>
+<article class="uk-article">
+	<p class="uk-article-lead"> <%= @post["text"] %></p>
+	<a class="uk-button" href="https://new.vk.com/wall<%= @post["to_id"] %>_<%= @post["id"] %>" target="_blank">Ссылка</a>
+    <p class="uk-article-meta">Дата: <%= Time.at(@post["date"]).strftime "%c" %> | <i class="uk-icon-heart"></i> <%= @post["likes"]["count"] %> | <i class="uk-icon-retweet"></i> <%= @post["reposts"]["count"] %> | <i class="uk-icon-comments"></i> <%= @post["comments"]["count"] %></p>
+    <hr class="uk-article-divider">
+</article>
+<% end %>
+</div>
+
+<script type="text/javascript">$('div').linkify();</script>
+</body>
+</html>
